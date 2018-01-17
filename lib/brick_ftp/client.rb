@@ -369,12 +369,12 @@ module BrickFTP
       BrickFTP::API::FileOperation::Upload.create(path: path, source: source)
     end
     
-    def request_upload(path:, ref: nil, partNumber: nil)
-      BrickFTP::API::FileOperation::Upload.step1(path: path, ref: ref, partNumber: partNumber)
+    def request_upload(path:, ref: nil, part_number: nil)
+      BrickFTP::API::FileOperation::Upload.step1(path: path, ref: ref, part_number: part_number)
     end
 
-    def process_upload(source:, uploadUri:)
-      BrickFTP::API::FileOperation::Upload.step2(source: source, uploadUri: uploadUri)
+    def process_upload(source:, upload_uri:)
+      BrickFTP::API::FileOperation::Upload.step2(source: source, upload_uri: upload_uri)
     end
 
     def complete_upload(path:, ref:)
