@@ -43,15 +43,17 @@ module BrickFTP
 
           new(step1.merge(step3).symbolize_keys)
         end
-        
+
         def self.step1(path:, ref: nil, part_number: nil)
           api_client = BrickFTP::HTTPClient.new
 
-          if ref.nil? || part_number.nil?
-            step1 = api_client.post(api_path_for(:create, path: path), params: { action: 'put' })
+          params = if ref.nil? || part_number.nil?
+            { action: 'put' }
           else
-            step1 = api_client.post(api_path_for(:create, path: path), params: { action: 'put', ref: ref, part: part_number })
+            { action: 'put', ref: ref, part: part_number }
           end
+
+          step1 = api_client.post(api_path_for(:create, path: path), params: params)
 
           step1.symbolize_keys
         end
